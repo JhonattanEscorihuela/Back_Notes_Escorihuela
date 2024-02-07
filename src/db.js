@@ -7,7 +7,7 @@ const { DB_USER, DB_PASSWORD, DB_HOST, DB_NAME, URL_HOST } = process.env;
 
 async function initializeDatabase() {
     try {
-        const sequelize = new Sequelize(URL_HOST, {
+        const sequelize = new Sequelize(`postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/${DB_NAME}`, {
             logging: false,
             native: false,
         });
@@ -38,7 +38,7 @@ initializeDatabase();
 
 // `postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/${DB_NAME}`
 
-const sequelize = new Sequelize(URL_HOST, {
+const sequelize = new Sequelize(`postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/${DB_NAME}`, {
     logging: false,
     native: false,
 });
