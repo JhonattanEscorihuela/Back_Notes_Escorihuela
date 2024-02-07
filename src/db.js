@@ -3,11 +3,11 @@ const { Sequelize } = require("sequelize");
 
 const fs = require('fs');
 const path = require('path');
-const { DB_USER, DB_PASSWORD, DB_HOST, DB_NAME } = process.env;
+const { DB_USER, DB_PASSWORD, DB_HOST, DB_NAME, URL_HOST } = process.env;
 
 async function initializeDatabase() {
     try {
-        const sequelize = new Sequelize(`postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}`, {
+        const sequelize = new Sequelize(URL_HOST, {
             logging: false,
             native: false,
         });
@@ -32,9 +32,13 @@ async function initializeDatabase() {
     }
 }
 
+
+
 initializeDatabase();
 
-const sequelize = new Sequelize(`postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/${DB_NAME}`, {
+// `postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/${DB_NAME}`
+
+const sequelize = new Sequelize(URL_HOST, {
     logging: false,
     native: false,
 });
